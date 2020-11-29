@@ -11,7 +11,6 @@ class IndexRoutes {
 
     config(): void{
         this.router.get('/', indexController.index);
-       
 
     }
 

@@ -1,6 +1,8 @@
 import express, {Application} from 'express';
 import indexRoutes from './routes/indexRoutes';
+import registerUserRoutes from './routes/registerUserRoutes';
 import morgan from 'morgan';
+import orderChangeRoute from './routes/orderChangeRoute';
 import cors from 'cors';
 
 class Server {
@@ -17,12 +19,12 @@ class Server {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:false}));
-
     }
 
     routes():void{
         this.app.use(indexRoutes);
-        
+        this.app.use('/user',registerUserRoutes);
+        this.app.use('/order',orderChangeRoute);
     }
 
     start():void{
