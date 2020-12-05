@@ -9,6 +9,7 @@ const registerUserRoutes_1 = __importDefault(require("./routes/registerUserRoute
 const morgan_1 = __importDefault(require("morgan"));
 const orderChangeRoute_1 = __importDefault(require("./routes/orderChangeRoute"));
 const cors_1 = __importDefault(require("cors"));
+const sprintRoutes_1 = __importDefault(require("./routes/sprintRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -26,6 +27,7 @@ class Server {
         this.app.use(indexRoutes_1.default);
         this.app.use('/user', registerUserRoutes_1.default);
         this.app.use('/order', orderChangeRoute_1.default);
+        this.app.use('/sprint', sprintRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

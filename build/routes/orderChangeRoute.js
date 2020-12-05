@@ -9,6 +9,7 @@ class OrderChangeRoute {
     }
     config() {
         this.router.post('/creation', orderChangeController_1.orderChangeController.create);
+        this.router.get('/list-OCs', orderChangeController_1.orderChangeController.listOrderChange);
         // this.router.post('/signin');
         // this.router.get('/searchPage',verifyToken);
     }

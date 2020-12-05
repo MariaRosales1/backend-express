@@ -4,11 +4,13 @@ export class OrderChange {
     id_phase !: number;
     priority !: string;
     description !: string;
-    create_date !: string;
+    creation_date !: string;
     finish_date ?: string;
     state !: string;
 
-    OrderChange(){
-        this.create_date = new Date().toLocaleDateString();
+    constructor(){
+        const date:Date = new Date();
+        this.creation_date =date.toLocaleDateString();
+        console.log(date);
     }
 }

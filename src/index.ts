@@ -1,33 +1,35 @@
-import express, {Application} from 'express';
+import express, { Application } from 'express';
 import indexRoutes from './routes/indexRoutes';
 import registerUserRoutes from './routes/registerUserRoutes';
 import morgan from 'morgan';
 import orderChangeRoute from './routes/orderChangeRoute';
 import cors from 'cors';
+import sprintRoutes from './routes/sprintRoutes';
 
 class Server {
     public app: Application;
-    constructor(){
+    constructor() {
         this.app = express();
         this.config();
         this.routes();
     }
 
-    config():void{
-        this.app.set('port',process.env.PORT||3000);
+    config(): void {
+        this.app.set('port', process.env.PORT || 3000);
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.json());
-        this.app.use(express.urlencoded({extended:false}));
+        this.app.use(express.urlencoded({ extended: false }));
     }
 
-    routes():void{
+    routes(): void {
         this.app.use(indexRoutes);
-        this.app.use('/user',registerUserRoutes);
-        this.app.use('/order',orderChangeRoute);
+        this.app.use('/user', registerUserRoutes);
+        this.app.use('/order', orderChangeRoute);
+        this.app.use('/sprint', sprintRoutes);
     }
 
-    start():void{
+    start(): void {
         this.app.listen(this.app.get('port'), () => {
             console.log('Server on port:', this.app.get('port'));
         });

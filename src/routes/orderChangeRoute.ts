@@ -11,6 +11,7 @@ class OrderChangeRoute {
 
     config(): void{
         this.router.post('/creation', orderChangeController.create);
+        this.router.get('/list-OCs', orderChangeController.listOrderChange);
        // this.router.post('/signin');
        // this.router.get('/searchPage',verifyToken);
 
