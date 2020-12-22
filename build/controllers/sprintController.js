@@ -24,11 +24,13 @@ class SprintController {
                     return res.json({ error: 'Error of database', message: err.sqlMessage });
                 }
                 ;
+                console.log(results);
                 if (results.length > 0) {
-                    if (results.max == null) {
+                    console.log(results[0].max);
+                    if (results[0].max == null) {
                         return res.json({ idSprint: 1 });
                     }
-                    return res.json({ idSprint: results.max + 1 });
+                    return res.json({ idSprint: results[0].max + 1 });
                 }
                 else {
                     return res.json({
@@ -50,13 +52,14 @@ class SprintController {
                         return res.json({ error: 'Error of database', message: err.sqlMessage });
                     }
                     ;
+                    console.log(results);
                     if (results.length > 0) {
                         if (results.max != null) {
                             idSprint = results.max + 1;
                         }
                         const sql = "INSERT INTO sprint set ?";
                         const sprint = {
-                            id_sprint: idSprint, start_date: req.body.star_date, end_date: req.body.end_state,
+                            id_sprint: idSprint, start_date: req.body.start_date, end_date: req.body.end_date,
                             compromised_points: 0, achieved_points: 0
                         };
                         database_1.default.query(sql, [sprint], function (err, results, fields) {
